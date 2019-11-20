@@ -50,11 +50,20 @@ public class dbContext extends SQLiteOpenHelper {
                                "insasig_ins_id integer, insasig_ci_id integer,insasig_fecha_inicio text,insasig_fecha_fin text,"+
                                "foreign key(insasig_ins_id) references instructores(ins_id),"+
                                "foreign key(insasig_ci_id) references ciclos(ci_id))");
-        //prueba
+        //creacion de tabla det instructor asignacion
+        sqLiteDatabase.execSQL("create table det_ins_asig(insdet_id integer primary key autoincrement, insdet_dia text,insdet_hora_inicio," +
+                               "insdet_hora_fin text, insdet_insasig_id integer, foreign key(insdet_insasig_id) references instructor_asignacion(insasing_id))");
 
 
+        //creacion de la tabla actividades
+        sqLiteDatabase.execSQL("create table actividades(act_id integer primary key autoincrement, act_nombre text, act_descripcion text, act_estado text)");
 
+        //creacion de actividad turno instructor
+        sqLiteDatabase.execSQL("create table actividad_turno_instructor(turno_id integer primary key autoincrement, turno_hora_inicio text, turno_hora_fin text,"+
+                "turno_insdet_id integer, turno_act_id integer, turno_revisado text, turno_aprobado,"+
+                "foreign key(turno_insdet_id) references det_ins_asig(insdet_id), foreign key(turno_act_id) references actividades(act_id))");
 
+        //creacion de tabla det enc asig
     }
 
     @Override
