@@ -9,13 +9,15 @@ import android.widget.TextView;
 
 public class ArrayCustomAdapter extends ArrayAdapter {
     private final Activity activity;
-    private final String[] names;
+    private final String[] arrayList;
+    private int id;
 
-    public ArrayCustomAdapter(Activity activity, String[] names)
+    public ArrayCustomAdapter(Activity activity, String[] names, int id)
     {
-        super(activity, R.layout.rowhistoriallayout,names);
+        super(activity, id ,names);
         this.activity = activity;
-        this.names = names;
+        this.arrayList = names;
+        this.id = id;
     }
 
     @Override
@@ -26,17 +28,23 @@ public class ArrayCustomAdapter extends ArrayAdapter {
         if(rowView == null)
         {
             LayoutInflater inflater = activity.getLayoutInflater();
-            rowView = inflater.inflate(R.layout.rowhistoriallayout,parent,false);
+            rowView = inflater.inflate(id,parent,false);
         }
 
-        //se enlazan los componetes del array
-        TextView tvsolicitud;
+        if(id==R.layout.row_user_list)
+        {
+            TextView nameUser;
+            nameUser = rowView.findViewById(R.id.tvUserName);
+            nameUser.setText(arrayList[position]);
 
-        tvsolicitud = rowView.findViewById(R.id.tvSolicitud);
-        //se setean los componentes de dicho array
-        String departamento = names[position];
-        tvsolicitud.setText(departamento);
-
+        }else{
+            //se enlazan los componetes del array
+            TextView tvsolicitud;
+            tvsolicitud = rowView.findViewById(R.id.tvSolicitud);
+            //se setean los componentes de dicho array
+            String departamento = arrayList[position];
+            tvsolicitud.setText(departamento);
+        }
         return  rowView;
     }
 

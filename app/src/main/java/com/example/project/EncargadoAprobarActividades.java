@@ -19,7 +19,7 @@ public class EncargadoAprobarActividades extends AppCompatActivity {
         datos[1] = ("Instructor: Mario Benitez \nHorario: Lun-Vi 9:30am-12:00pm\nActividad realizada: Actualizacion de sw");
         datos[2] = ("Instructor: Karen Solis \nHorario: Lun-Mi 9:30am-11:00am\nActividad realizada: Horas Extras");
 
-        ArrayCustomAdapter ac = new ArrayCustomAdapter(this,datos);
+        ArrayCustomAdapter ac = new ArrayCustomAdapter(this,datos,R.layout.rowhistoriallayout);
 
         ListView listView = (ListView) findViewById(R.id.listadoSolicitudes);
         listView.setAdapter(ac);
