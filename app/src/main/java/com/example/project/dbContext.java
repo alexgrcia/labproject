@@ -41,6 +41,18 @@ public class dbContext extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("create table ciclos(ci_id integer primary key autoincrement, ci_codigo text,ci_fecha_inicio text, ci_fecha_fin text, ci_estado)");
 
         // creacion de la tabla empleados
+        sqLiteDatabase.execSQL("create table empleados(emp_id integer primary key autoincrement, emp_nombre text,emp_apellido text, emp_email text, emp_tipo integer, emp_estado text)");
+
+        //creacion de tabla empleado asignacion
+        sqLiteDatabase.execSQL("create table empleado_asignacion(encasig_id integer primary key autoincrement, encasig_emp_id integer, encasig_lab_id integer, encasig_ci_id integer, foreign key(encasig_emp_id) references empleados(emp_id),foreign key(encasig_lab_id) references laboratorios(lab_id), foreign key(encasig_ci_id) references lciclos(ci_id) )");
+        //creacion de tabla instructor asiganacion
+        sqLiteDatabase.execSQL("create table instructor_asignacion(insasing_id integer primary key autoincrement,"+
+                               "insasig_ins_id integer, insasig_ci_id integer,insasig_fecha_inicio text,insasig_fecha_fin text,"+
+                               "foreign key(insasig_ins_id) references instructores(ins_id),"+
+                               "foreign key(insasig_ci_id) references ciclos(ci_id))");
+
+
+
 
     }
 
