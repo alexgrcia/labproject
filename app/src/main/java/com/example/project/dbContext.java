@@ -50,6 +50,7 @@ public class dbContext extends SQLiteOpenHelper {
                                "insasig_ins_id integer, insasig_ci_id integer,insasig_fecha_inicio text,insasig_fecha_fin text,"+
                                "foreign key(insasig_ins_id) references instructores(ins_id),"+
                                "foreign key(insasig_ci_id) references ciclos(ci_id))");
+        //prueba
 
 
 
