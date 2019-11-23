@@ -22,6 +22,7 @@ public class InstructorRutina extends AppCompatActivity {
     EditText e1,e2;
 
     SQLiteDatabase database;
+    SessionClass sessionClass = new SessionClass();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +33,6 @@ public class InstructorRutina extends AppCompatActivity {
         dbContext db = new dbContext(getApplicationContext());
         database = db.getWritableDatabase();
 
-
-        SessionClass sessionClass = new SessionClass();
 
         calendario.setTimeZone( TimeZone.getTimeZone( "America/El_Salvador" ));
         hora =calendario.get(Calendar.HOUR);
