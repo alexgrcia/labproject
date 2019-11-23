@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.StringTokenizer;
+
 public class LoginActivity extends AppCompatActivity {
 
     //se define a base de datos
@@ -60,8 +62,18 @@ public class LoginActivity extends AppCompatActivity {
         {
             int tipoUsuario = Integer.parseInt(result.getString(3));
 
-            Toast.makeText(getApplicationContext(),String.valueOf(tipoUsuario),Toast.LENGTH_SHORT).show();
+            SessionClass s = new SessionClass();
 
+            //se obtiene la informacion del usuario
+            String UserInfo = "select * from instructores where ins_acc_id = "+ result.getString(0) +" ";
+
+            Cursor resultado = database.rawQuery(UserInfo,null);
+
+            if(resultado.moveToNext())
+            {
+                s.id = resultado.getString(0);
+                s.nombre = resultado.getString(1) + " "+ result.getString(2);
+            }
 
             if(tipoUsuario == 2) {
                 Intent intent = new Intent(getApplicationContext(), EncargadoMainActivity.class);

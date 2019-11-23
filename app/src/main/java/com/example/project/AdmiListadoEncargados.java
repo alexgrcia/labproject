@@ -30,23 +30,18 @@ public class AdmiListadoEncargados extends AppCompatActivity {
         String consultaSQL = "select * from empleados where emp_tipo = 1";
         Cursor data = db.rawQuery(consultaSQL,null);
 
+        ArrayList<String> dataEmpleados = new ArrayList<>();
+
         while(data.moveToNext())
         {
-
+            dataEmpleados.add(data.getString(1) + " " + data.getString(2));
         }
 
-        setTitle("Encargados");
-
-        String[] historial = new String[3];
-
-        historial[0] =("Juan Perez");
-        historial[1] =("Maria Ramirez ");
-        historial[2] =("Jose Felix");
-
-       ArrayCustomAdapter ca = new ArrayCustomAdapter(this,historial,R.layout.row_user_list);
+       //ArrayCustomAdapter ca = new ArrayCustomAdapter(this,historial,R.layout.row_user_list);
 
         ListView listView = (ListView) findViewById(R.id.ListaEncargados);
-        listView.setAdapter(ca);
+        //listView.setAdapter(ca);
+        listView.setAdapter(new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,dataEmpleados));
 
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

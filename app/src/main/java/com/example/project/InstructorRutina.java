@@ -1,6 +1,7 @@
 package com.example.project;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -20,10 +21,19 @@ public class InstructorRutina extends AppCompatActivity {
     int hora, minutos;
     EditText e1,e2;
 
+    SQLiteDatabase database;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.instructor_activity_rutina);
+
+        //instancia a la base de datos
+        dbContext db = new dbContext(getApplicationContext());
+        database = db.getWritableDatabase();
+
+
+        SessionClass sessionClass = new SessionClass();
 
         calendario.setTimeZone( TimeZone.getTimeZone( "America/El_Salvador" ));
         hora =calendario.get(Calendar.HOUR);
